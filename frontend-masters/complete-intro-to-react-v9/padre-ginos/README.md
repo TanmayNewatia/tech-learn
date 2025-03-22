@@ -83,3 +83,22 @@ changeOrigin: true,
 },
 },
 },
+
+Arrow functions creates anonymous functions, where
+as Function declaration creates named functions
+
+Two-way data binding is not free in React,
+Angular 1 was a big two-way data binding framework
+
+Solid.js
+PreAct
+
+Anything that starts with use, is a hook.
+Hook should never be called conditionally, as hooks depends on being called in the same order, which would be disrupted when calling them conditionally
+Hooks are also not called inside loops, they are always top level
+
+Vue has a concept of derivative state,
+similarly does Svelte,
+But in react we keep track of them using variables
+
+useEffect cannot be async, as async function returns promise, and in case of useEffect return type matters, what we can do is create an async function and call that function in useEffect
