@@ -175,3 +175,8 @@ pizzaOfTheDay
 );
 having multiple useDebugValue used in a hook, returns a array of hook value in the Component Developer Tools available in Browser Devtools
 Learn more about them : https://react.dev/reference/react/useDebugValue
+
+For forms onSubmit is better than onClick
+
+Props are something that are passed from the parent to child - States passed as props cannot be edited by the child components, hence it is called as one-way data flow.
+To update the parent's state from child one has to pass function that manipulates the said parent state to the child too
