@@ -1,45 +1,17 @@
-import { StrictMode, useState } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom";
-// import Pizza from "./Pizza";
-import Order from "./Order";
-import PizzaOfTheDay from "./PizzaOfTheDay";
-import Header from "./Header";
-import { CartContext } from "./contexts";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { routeTree } from "./routeTree.gen";
+
+const router = createRouter({ routeTree });
+const queryClient = new QueryClient();
+
 const App = () => {
-  const cartHook = useState([]);
   return (
-    <CartContext.Provider value={cartHook}>
-      <div>
-        <Header />
-        <Order />
-        <PizzaOfTheDay />
-        {/* <Pizza
-        name="The Pepperoni Pizza"
-        description="Some dope pizza yo"
-        image={"/public/pizzas/pepperoni.webp"}
-      />
-      <Pizza
-        name="Americano Pizza"
-        description="French fries and hot fogs, wtf Italy"
-        image={"/public/pizzas/big_meat.webp"}
-      />
-      <Pizza
-        name="The Hawaiian"
-        description="pineapple and ham, wtf America"
-        image={"/public/pizzas/hawaiian.webp"}
-      />
-      <Pizza
-        name="Chicken Pizza?"
-        description="chicken nuggies on your pizza, wtf UK"
-        image={"/public/pizzas/spin_pesto.webp"}
-      />
-      <Pizza
-        name="Baked Potato Pizza"
-        description="unholy potato mash, wtf Minnesota"
-        image={"/public/pizzas/mexicana.webp"}
-      /> */}
-      </div>
-    </CartContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 };
 

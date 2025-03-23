@@ -180,3 +180,29 @@ For forms onSubmit is better than onClick
 
 Props are something that are passed from the parent to child - States passed as props cannot be edited by the child components, hence it is called as one-way data flow.
 To update the parent's state from child one has to pass function that manipulates the said parent state to the child too
+
+Tanstack Router is inclined towards client side rendering, were as React Router is equally inclined towards server side rendering as for Remix and client side rendering. Documentation for Tanstack Router : https://tanstack.com/router/latest
+
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
+is to be configed as a plugin in vite.config.js
+
+Then a routes path and a file \_\_root.jsx is required in src to utilize Tanstack Router.
+
+Outlet works as children for swapping of the components in the \_\_root.jsx file.
+
+Adding .lazy. to the file name makes them lazy loaded by default via tanstack router
+
+And then creating Route as below in the said file makes the component load lazy
+export const Route = createLazyFileRoute("/order")({
+component: Order,
+});
+
+Tanstack's queryCache is to prefill cache
+Tanstack's mutationCache is for post requests as Mutations are for post requests
+
+To setup tanstack's query you should have queryClient as below:
+const queryClient = new QueryClient();
+and wrap the components where you want to use Tanstack Query as below:
+<QueryClientProvider client={queryClient}>
+<RouterProvider router={router} />
+</QueryClientProvider>
