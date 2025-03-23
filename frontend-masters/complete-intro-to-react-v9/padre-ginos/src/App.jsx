@@ -1,11 +1,14 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom";
 // import Pizza from "./Pizza";
 import Order from "./Order";
+import PizzaOfTheDay from "./PizzaOfTheDay";
 const App = () => {
   return (
     <div>
-      <h1>Padre Gino's - Order Now</h1>
+      <h1 className="logo">Padre Gino's - Order Now</h1>
       <Order />
+      <PizzaOfTheDay />
       {/* <Pizza
         name="The Pepperoni Pizza"
         description="Some dope pizza yo"
@@ -37,4 +40,8 @@ const App = () => {
 
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(<App />);
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);

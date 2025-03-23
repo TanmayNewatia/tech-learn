@@ -19,7 +19,7 @@ prettier config should be the last as it doesn't add anything new, but has rules
 
 npm run lint -- --fix
 npm run lint -- --debug
--- in the between is required to let it know that it is to be applied to lint script
+-- in the between is required to let it know that it is to be applied to lint script - thi s is now not required in newer versions of eslint
 
 debugger
 
@@ -102,3 +102,76 @@ similarly does Svelte,
 But in react we keep track of them using variables
 
 useEffect cannot be async, as async function returns promise, and in case of useEffect return type matters, what we can do is create an async function and call that function in useEffect
+
+Dependency array is important in useEffect
+
+Importance of key is that it allows react to understand that a certain component is only updated and not the whole whole component
+
+Why using index is not okay as for in case of key:
+As the array of objects being mapped, are not linked to indices/index so even if the change is actual made to the order of the component it doesnot seems to be happening in view of React
+
+NODE_ENV is automatically set by Vite,Next and Remix, where as in case of webpack one have to set them manually
+
+Slack moved with Production deployment with NODE_ENV as development, which reduced performance, but once the NODE_ENV was set as production, there was a huge upside to performance
+
+StrictMode helps with things that are going to be deprecated from React, hence letting developer know to be updated
+Further it continually double-renders your components and will run effects twice as to catch subtle bugs where our app is should be change between renders when it's not meant to.
+
+Get React Developer Tools via https://react.dev/learn/react-developer-tools
+This is useful to check the components, props passed to it, and the states, effects utilized within the component, and lets you update then
+
+$r -> When typed in console helps in seeing which component has been selected in React Component Developer Tools
+
+$0 -> When typed in console helps in seeing which component/tag has been selected last in Inspector
+
+Profiler helps in checking the performance of the react application
+
+Work on React Performance -> https://frontendmasters.com/courses/react-performance/
+
+If same logic has to be used at multiple components we use custom hooks, rather than useState/useEffect in each component. i.e. Custom Hooks encapsulated useState and useEffect
+
+Custom hooks is a function that calls other functions
+
+Any logic shouldn't be written in jsx/tsx, rather write them into hooks files
+
+First render of the components are done before running of the effects for the first time
+
+Early Return Pattern:
+const pizzaOfTheDay = usePizzaOfTheDay();
+
+if (!pizzaOfTheDay) {
+return <div>Loading...</div>;
+}
+
+return (
+
+<div className="pizza-of-the-day">
+<h2>Pizza of the Day</h2>
+<div>
+<div className="pizza-of-the-day-info">
+<h3>{pizzaOfTheDay.name}</h3>
+<p>{pizzaOfTheDay.description}</p>
+<p className="pizza-of-the-day-price">
+From: {intl.format(pizzaOfTheDay.sizes.S)}
+</p>
+</div>
+<img
+          className="pizza-of-the-day-image"
+          src={pizzaOfTheDay.image}
+          alt={pizzaOfTheDay.name}
+        />
+</div>
+</div>
+);
+
+"use" used as a prefix to hooks is a way to easily understand the said component is a hook, and react linting will catch errors as respect to hooks
+and having capital first letter let us understand that it is a react component
+
+the below can be used for devtools
+useDebugValue(
+pizzaOfTheDay
+? `${pizzaOfTheDay.id} - ${pizzaOfTheDay.name}`
+: "Loading...",
+);
+having multiple useDebugValue used in a hook, returns a array of hook value in the Component Developer Tools available in Browser Devtools
+Learn more about them : https://react.dev/reference/react/useDebugValue

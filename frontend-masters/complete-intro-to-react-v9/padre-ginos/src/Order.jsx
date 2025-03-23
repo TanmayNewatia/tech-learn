@@ -18,6 +18,8 @@ export default function Order() {
     selectedPizza = pizzaTypes.find((pizza) => pizzaType === pizza.id);
   }
 
+  price = intl.format(selectedPizza?.sizes?.[pizzaSize]);
+
   async function fetchPizzaTypes() {
     const pizzaRes = await fetch("/api/pizzas");
     const pizzaJson = await pizzaRes.json();
@@ -88,15 +90,19 @@ export default function Order() {
             </div>
           </div>
           <button type="submit">Add to Cart</button>
+        </div>
+        {loading ? (
+          <h3>Loading...</h3>
+        ) : (
           <div className="order-pizza">
             <Pizza
-              name="Pepperoni"
-              description="Another Pepperoni Pizza"
-              image="public/pizzas/pepperoni.webp"
+              name={selectedPizza.name}
+              description={selectedPizza.description}
+              image={selectedPizza.image}
             />
-            <p>$13.37</p>
+            <p>{price}</p>
           </div>
-        </div>
+        )}
       </form>
     </div>
   );
