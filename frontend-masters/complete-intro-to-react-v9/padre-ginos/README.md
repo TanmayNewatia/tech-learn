@@ -197,6 +197,8 @@ export const Route = createLazyFileRoute("/order")({
 component: Order,
 });
 
+Tanstack is a much better way to call apis, as for the data caching capabilities and better handling of api requests and responses
+
 Tanstack's queryCache is to prefill cache
 Tanstack's mutationCache is for post requests as Mutations are for post requests
 
@@ -206,3 +208,37 @@ and wrap the components where you want to use Tanstack Query as below:
 <QueryClientProvider client={queryClient}>
 <RouterProvider router={router} />
 </QueryClientProvider>
+
+Here paranthesis is normally used as an implicit return
+{data.map((order) => (
+
+<tr key={order.order_id}>
+<td>{order.order_id}</td>
+<td>{order.date}</td>
+<td>{order.time}</td>
+</tr>
+))}
+we can similarly write
+{data.map((order) => {return(
+<tr key={order.order_id}>
+<td>{order.order_id}</td>
+<td>{order.date}</td>
+<td>{order.time}</td>
+</tr>
+)}))}
+
+Remote State Management (Zustand, Redux) vs Tanstack Query
+Both tools holds different use cases and hence cannot be directly compared.
+Further Tanstack store is directly competing with Zustand
+
+Further add details about Zustand and its use-cases, along with Redux and its use-cases too
+
+Could check this out :https://frontendmasters.com/teachers/david-khourshid/
+
+React Native : https://frontendmasters.com/courses/intermediate-react-native-v2/
+
+Folder Structure could be created as such that whena specific component is no longer needed in the code it can be directly deleted
+
+To learn more on Tailwind from Brain Holt : https://react-v8.holt.courses/
+
+Could learn about SolidJS here : https://frontendmasters.com/courses/reactivity-solidjs/
