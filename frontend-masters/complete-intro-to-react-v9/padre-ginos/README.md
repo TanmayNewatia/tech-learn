@@ -242,3 +242,78 @@ Folder Structure could be created as such that whena specific component is no lo
 To learn more on Tailwind from Brain Holt : https://react-v8.holt.courses/
 
 Could learn about SolidJS here : https://frontendmasters.com/courses/reactivity-solidjs/
+
+Portal allows to render things outside the application:
+Such as a navbar is present outside the app, and is updated on the basis of content available in the app.
+
+A ref is a frozen object, with is used to reduce rerenders and we can only update the current value of the ref
+
+useEffect(() => {
+const modalRoot = document.getElementById("modal");
+modalRoot.appendChild(elRef.current);
+
+    return () => modalRoot.removeChild(elRef.current);
+
+}, []);
+
+in the above code when we appendChild in the dom, if we don't have a clean up function which is written in the return of the useEffect, then it would lead to memory leak, as as many times the page renders the div is created but not removed from dom
+
+!!value makes it a boolean
+
+enabled is a option in tanstack to make it aware if the api call is to be made or not
+
+Class component -> has a major use case as for error boundaries, as we can implement error boundaries just with class components
+
+Error boundary package -> https://www.npmjs.com/package/react-error-boundary
+
+Hooks cannot be used with class components
+To do the above: We have to create a functional component and run the hook and then pass it as prop to the class component
+
+If a function is static is can be called on uninstantiated class, else we have to instantiated the class and then use the functions
+
+Every Class Component must have a render function
+
+componentDidMount() {} is similar to useEffect to be run once that is with an empty array.
+
+componentWillUnmount() {} is similar to cleaning functions that was being returned at the end of the useEffect to clean the code
+
+componentDidUpdate() {} runs when a state is updated
+
+constructor(props) {
+super(props)
+} -> this is the first function to run when a class component is initialized
+
+In the class components we would have to bind "this" to every function
+
+Arrow functions have different context setting methology than normal function -> add more details about it
+
+function ErrorBoundaryWrappedPastOrderRoutes() {
+return (
+<ErrorBoundary>
+<PastOrderRoute />
+</ErrorBoundary>
+);
+}
+ErrorBoundary can catch errors only of the this that are being rendered inside it
+
+Pass through functions
+
+Why was Error Boundaries left out of the new react, like why it requires classical component
+
+- There was not a better way to handle the Error Boundary and hence the class component was not going to be deprecated so fine.
+
+To get data we use Query of tanstack, and for the post, patch, delete we use Mutation of tanstack
+
+mutation is not directly calling the mutationFn, hence we have to use mutation.mutate
+
+When we just have to collect simple data, we use uncontrolled forms
+
+In the query devtools we can check all the mutations and query
+
+Basic form handling is in built within the browser
+
+Handling of the validation on the submit
+
+Controlled forms are to be used when we have dependent fields in the form - eg: pincode based
+
+418, I'm a teapost is actually a error
