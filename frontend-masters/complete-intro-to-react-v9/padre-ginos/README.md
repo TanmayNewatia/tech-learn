@@ -317,3 +317,51 @@ Handling of the validation on the submit
 Controlled forms are to be used when we have dependent fields in the form - eg: pincode based
 
 418, I'm a teapost is actually a error
+
+Test Cases
+
+Vitest
+Jest was created by Meta which is now OpenJS
+Jest and Vitest are mimicing Jasmine
+
+Vitest -> Testing Suite for Vite
+Testing-Library/React -> Helping library used to write testcases fro react
+Airbnb created Enzymes before
+Happy Dom -> Synthetic Browser Environment,
+JSDOM was massive and slow hence they created Happy Dom
+
+**test** is specifically the route that would be used to run tests
+
+App.test.jsx are the kidn of files that vitest automatically finds and run tests on them
+
+Setup requires :
+script should have
+test : "vitest"
+and vite.config.js should have
+test: {
+environment: "happy-dom",
+},
+Read more about Playwright
+
+vitest.config.js is configuration for vitest
+
+sample test:
+// We are gonna write a text such that we have alt text
+
+import { render } from "@testing-library/react";
+import { expect, test } from "vitest";
+import Pizza from "../Pizza";
+
+test("alt test renders on image", async () => {
+const name = "My Favorite Pizza";
+const src = "https://picsum.photos/200";
+const screen = render(
+<Pizza name={name} description="super cool pizza" image={src} />,
+);
+
+const img = screen.getByRole("img");
+expect(img.src).toBe(src);
+expect(img.alt).toBe(name);
+});
+
+Test can be kept asynchronous in all cases
